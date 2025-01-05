@@ -7,6 +7,7 @@ const program = new Command();
 program
   .command("gendiff <filepath1> <filepath2>")
   .description("Compares two configuration files and shows a difference.")
+
   .action(() => {
     console.log("Compares two configuration...");
   });
