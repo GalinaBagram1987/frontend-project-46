@@ -1,5 +1,5 @@
 {
-  "name": "frontend-project-46",
+  "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "difference calculator",
   "main": "index.js",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/GalinaBagram1987/frontend-project-46#readme",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "commander": "^13.0.0"
   }
 }
