@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/GalinaBagram1987/frontend-project-46#readme",
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
     "jest": "^29.7.0"
   },
   "dependencies": {
