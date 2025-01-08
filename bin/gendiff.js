@@ -1,16 +1,23 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import { readFile } from "../src/utilits.js";
+import fs from "fs";
+import path from "path";
 
 const program = new Command();
 
 program
-  .command("gendiff <filepath1> <filepath2>")
+  .name("gendiff")
   .description("Compares two configuration files and shows a difference.")
-
-  .action(() => {
-    console.log("Compares two configuration...");
+  .option("-f, --format [type]", "output format")
+  .argument("<filepath1>")
+  .argument("<filepath1>")
+  .version("0.0.1")
+  .action((filepath1, filepath2, option) => {
+    const content1 = readFile(filepath1);
+    const content2 = readFile(filepath2);
+    console.log(content1, content2);
   });
-program.option("-f, --format [type]", "output format");
-program.version("0.0.1");
+
 program.parse();
