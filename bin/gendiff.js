@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { readFile } from "../src/utilits.js";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import path from "path";
+import { genDiff } from "../src/index.js";
+import {
+  getPath,
+  readFile,
+  getExtension,
+  getDifferent,
+} from "../src/utilits.js";
+import { getParseData } from "../src/parser.js";
 
 const program = new Command();
 
@@ -16,9 +23,7 @@ program
   .argument("<filepath2>")
   .version("0.0.1")
   .action((filepath1, filepath2, option) => {
-    const content1 = readFile(filepath1);
-    const content2 = readFile(filepath2);
-    console.log(content1, content2);
+    console.log(genDiff(filepath1, filepath2));
   });
 
 program.parse();

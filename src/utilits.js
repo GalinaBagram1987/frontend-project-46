@@ -8,7 +8,15 @@ import _ from "lodash";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getPath = (filename) => path.resolve(__dirname, "..", filename);
+export const getBaseDir = () => {
+  return path.resolve(__dirname, "..");
+};
+
+export const getPath = (filePath) => {
+  const baseDir = getBaseDir();
+  const absolutePath = path.resolve(baseDir, filePath);
+  return absolutePath;
+};
 
 export const readFile = (filePath) =>
   fs.readFileSync(getPath(filePath), "utf-8");
@@ -34,3 +42,7 @@ export const getDifferent = (obj1, obj2) => {
     return acc;
   }, "{\n");
 };
+
+// console.log(getPath(`__fixtures__/file1.json`));
+// console.log(readFile("__fixtures__/file1.json"));
+// console.log(getExtension("__fixtures__/file1.json"));
