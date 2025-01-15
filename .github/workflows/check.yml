@@ -3,33 +3,25 @@ name: test project 2(frontend-project-46)
 # on – определяет события, которые запускают воркфлоу
 on: push
 jobs:
-  # build – произвольно выбранное имя задания
-  # их может быть больше одного
-  # операционная система для работы воркфлоу
   build:
-   build:
-    # операционная система для работы воркфлоу
     runs-on: ubuntu-latest
-    steps: # список шагов, которые надо выполнить
-      # экшен — выполняет какую-то задачу
-      # checkout — клонирует репозиторий
-      - uses: actions/checkout@v3
-      # run – произвольная bash-команда
-        # экшен — выполняет какую-то задачу
-        # checkout — клонирует репозиторий
-        # Клонируем репозиторий
-        - uses: actions/checkout@4
-          # Устанавливаем Node.js
-        - uses: actions/setup-node@v4
-        # run – произвольная bash-команда
-        # Ставим зависимости
-        - name: npm install
-          run: make install
-        - name: run linter
-          run: make lint
-          # run: npm run lint
-        - name: run tests
-          run: npm test
+    steps:
+      - uses: actions/checkout@4 #clone rep
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: install dependencies
+        run: npm install
+
+      - name: run linter
+        run: make lint
+
+      - name: run tests
+        run: npm test
+
       # - name: Test & publish code coverage
       #   # Publish code coverage on Code Climate
       #   # https://github.com/paambaati/codeclimate-action
