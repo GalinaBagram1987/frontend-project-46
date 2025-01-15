@@ -5,29 +5,28 @@ on: push
 jobs:
   # build – произвольно выбранное имя задания
   # их может быть больше одного
+  # операционная система для работы воркфлоу
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-    # операционная система для работы воркфлоу
-    runs-on: ubuntu-latest
-    steps: # список шагов, которые надо выполнить
-      # экшен — выполняет какую-то задачу
-      # checkout — клонирует репозиторий
-      # Клонируем репозиторий
-      - uses: actions/checkout@4
-        # Устанавливаем Node.js
-      - uses: actions/setup-node@v4
-      # run – произвольная bash-команда
-      # Ставим зависимости
-      - name: npm install
-        run: make install
-      - name: run linter
-        run: make lint
-        # run: npm run lint
-      - name: run tests
-        run: npm test
+      steps: # список шагов, которые надо выполнить
+        # экшен — выполняет какую-то задачу
+        # checkout — клонирует репозиторий
+        # Клонируем репозиторий
+        - uses: actions/checkout@4
+          # Устанавливаем Node.js
+        - uses: actions/setup-node@v4
+        # run – произвольная bash-команда
+        # Ставим зависимости
+        - name: npm install
+          run: make install
+        - name: run linter
+          run: make lint
+          # run: npm run lint
+        - name: run tests
+          run: npm test
       # - name: Test & publish code coverage
       #   # Publish code coverage on Code Climate
       #   # https://github.com/paambaati/codeclimate-action

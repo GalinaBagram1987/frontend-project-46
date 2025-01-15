@@ -8,7 +8,7 @@
 
 ### check.yml badges
 
-[![hexlet-check](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/hexlet-check.yml)
+[![.github/workflows/check.yml](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml/badge.svg)](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml)
 
 ### codeclimate maintainability badge
 
