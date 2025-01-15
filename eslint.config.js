@@ -1,14 +1,4 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
-
-/** @type {import('eslint').Linter.Config[]} */
-//export default [
-//  {files: ["**/*.js"], languageOptions: {sourceType: "script"}},
-//  {languageOptions: { globals: globals.browser }},
-//  pluginJs.configs.recommended,
-//];
-
-import globals from "globals";
 // import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
 
 import path from "path";
@@ -35,6 +25,14 @@ export default [
   {
     rules: {
       "no-duplicate-imports": "off", // Отключаем правило
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          js: "always",
+          jsx: "never",
+        },
+      ],
     },
   },
 ];
