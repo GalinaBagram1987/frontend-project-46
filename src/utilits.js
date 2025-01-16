@@ -46,3 +46,5 @@ export const getDifferent = (obj1, obj2) => {
 // console.log(getPath(`__fixtures__/file1.json`));
 // console.log(readFile("__fixtures__/file1.json"));
 // console.log(getExtension("__fixtures__/file1.json"));
+// console.log(readFile('__fixtures__/expectJson.js'));
+// console.log(readFile('__fixtures__/expectYML.js'));
