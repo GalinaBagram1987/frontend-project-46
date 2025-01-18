@@ -24,27 +24,46 @@ export const readFile = (filePath) =>
 export const getExtension = (filePath) => extname(filePath);
 
 export const getDifferent = (obj1, obj2) => {
-  if (Object.keys(obj1).length === 0 && Object.keys(obj2).length === 0)
-    return '';
-  const keys = _.sortBy(_.uniq([...Object.keys(obj1), ...Object.keys(obj2)]));
-  return keys.reduce((acc, key) => {
-    if (obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key)) {
-      if (obj1[key] === obj2[key]) {
-        acc += `    ${key}: ${obj1[key]}\n`;
-      } else {
-        acc += `  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}\n`;
-      }
-    } else if (obj1.hasOwnProperty(key)) {
-      acc += `  - ${key}: ${obj1[key]}\n`;
-    } else if (obj2.hasOwnProperty(key)) {
-      acc += `  + ${key}: ${obj2[key]}\n}`;
-    }
-    return acc;
-  }, '{\n');
-};
+  if (!obj1 || !obj2) {
+    return 'One of the objects is undefined or null';
+  }
 
+  // Храним результат в виде строки
+  let result = '';
+
+  const keys = _.sortBy(_.uniq([...Object.keys(obj1), ...Object.keys(obj2)]));
+
+  keys.forEach((key) => {
+    const val1 = obj1[key];
+    const val2 = obj2[key];
+
+    if (val1 === undefined) {
+      result += ` + ${key}: ${JSON.stringify(val2, null, 2)}\n`;
+    } else if (val2 === undefined) {
+      result += ` - ${key}: ${JSON.stringify(val1, null, 2)}\n`;
+    } else if (val1 === val2) {
+      result += `${key}: ${val1}\n`;
+    } else if (val1 !== val2) {
+      // Проверяем, если оба - объекты, и не null
+      if (
+        typeof val1 === 'object' &&
+        typeof val2 === 'object' &&
+        val1 !== null &&
+        val2 !== null
+      ) {
+        result += ` ${key}: {\n${getDifferent(val1, val2)}}\n`;
+      } else {
+        result += ` - ${key}: ${JSON.stringify(val1, null, 2)}\n`;
+        result += ` + ${key}: ${JSON.stringify(val2, null, 2)}\n`;
+      }
+    }
+  });
+
+  return result;
+};
 // console.log(getPath(`__fixtures__/file1.json`));
 // console.log(readFile("__fixtures__/file1.json"));
 // console.log(getExtension("__fixtures__/file1.json"));
 // console.log(readFile('__fixtures__/expectJson.js'));
 // console.log(readFile('__fixtures__/expectYML.js'));
+// console.log(getExtension("__fixtures__/file1.json"));
