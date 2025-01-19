@@ -24,43 +24,52 @@ export const readFile = (filePath) =>
 export const getExtension = (filePath) => extname(filePath);
 
 export const getDifferent = (obj1, obj2) => {
-  if (!obj1 || !obj2) {
-    return 'One of the objects is undefined or null';
-  }
-
-  // Храним результат в виде строки
-  let result = '';
-
-  const keys = _.sortBy(_.uniq([...Object.keys(obj1), ...Object.keys(obj2)]));
-
-  keys.forEach((key) => {
+  const objKeys1 = Object.keys(obj1);
+  const objKeys2 = Object.keys(obj2);
+  const allKeys = _.sortBy(_.uniq([...objKeys1, ...objKeys2])).map((key) => {
     const val1 = obj1[key];
     const val2 = obj2[key];
-
-    if (val1 === undefined) {
-      result += ` + ${key}: ${JSON.stringify(val2, null, 2)}\n`;
-    } else if (val2 === undefined) {
-      result += ` - ${key}: ${JSON.stringify(val1, null, 2)}\n`;
-    } else if (val1 === val2) {
-      result += `${key}: ${val1}\n`;
-    } else if (val1 !== val2) {
-      // Проверяем, если оба - объекты, и не null
-      if (
-        typeof val1 === 'object' &&
-        typeof val2 === 'object' &&
-        val1 !== null &&
-        val2 !== null
-      ) {
-        result += ` ${key}: {\n${getDifferent(val1, val2)}}\n`;
-      } else {
-        result += ` - ${key}: ${JSON.stringify(val1, null, 2)}\n`;
-        result += ` + ${key}: ${JSON.stringify(val2, null, 2)}\n`;
+    const isObjects = _.isObject(val1) && _.isObject(val2);
+    if (!_.has(obj1, key)) {
+      return {
+        key,
+        val2,
+        mark: 'added',
+      };
+    }
+    if (!_.has(obj2, key)) {
+      return {
+        key,
+        val1,
+        mark: 'delete',
+      };
+    }
+    if (_.has(obj1, key) && _.has(obj2, key)) {
+      if (isObjects) {
+        return {
+          key,
+          value: getDifferent(val1, val2),
+          mark: 'nested',
+        };
+      } else if (val1 !== val2) {
+        return {
+          key,
+          val1,
+          val2,
+          mark: 'change',
+        };
+      } else if (val1 === val2) {
+        return {
+          key,
+          val1,
+          mark: 'no change',
+        };
       }
     }
   });
-
-  return result;
+  return allKeys;
 };
+
 // console.log(getPath(`__fixtures__/file1.json`));
 // console.log(readFile("__fixtures__/file1.json"));
 // console.log(getExtension("__fixtures__/file1.json"));
