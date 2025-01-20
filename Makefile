@@ -1,6 +1,6 @@
 # Makefile
 
-.PHONY: 
+.PHONY:
 	install #PHONY instal is a fact. not a name
 
 install:

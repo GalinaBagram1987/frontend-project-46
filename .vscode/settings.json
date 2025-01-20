@@ -7,5 +7,10 @@
 		"typescript",
 		"typescriptreact"
 	],
-	"prettier.singleQuote": true
+	"prettier.singleQuote": true,
+	//"[makefile]": {
+		//"editor.insertSpaces": true,
+   		//"editor.tabSize": 4,
+   		//"editor.detectIndentation": false
+   //	}
 }
