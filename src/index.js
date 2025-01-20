@@ -8,13 +8,15 @@
 import { getDifferent } from './utilits.js';
 
 import getParseData from './parser.js';
+import getStylish from './formaters/stylish.js';
 
 const genDiff = (filePath1, filePath2) => {
   const obj1 = getParseData(filePath1);
   const obj2 = getParseData(filePath2);
-  const result = getDifferent(obj1, obj2);
+  const dataDiff = getDifferent(obj1, obj2);
+  const result = getStylish(dataDiff);
   return result;
 };
 
-export { genDiff };
+export default genDiff;
 // console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));

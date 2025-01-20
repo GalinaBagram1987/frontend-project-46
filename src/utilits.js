@@ -1,15 +1,16 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-import * as yaml from 'js-yaml';
 import { extname } from 'path';
+import * as yaml from 'js-yaml';
 import _ from 'lodash';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const getBaseDir = () => {
-  return path.resolve(__dirname, '..');
+  const baseDir = path.resolve(__dirname, '..');
+  return baseDir;
 };
 
 export const getPath = (filePath) => {
@@ -29,7 +30,6 @@ export const getDifferent = (obj1, obj2) => {
   const allKeys = _.sortBy(_.uniq([...objKeys1, ...objKeys2])).map((key) => {
     const val1 = obj1[key];
     const val2 = obj2[key];
-    const isObjects = _.isObject(val1) && _.isObject(val2);
     if (!_.has(obj1, key)) {
       return {
         key,
@@ -44,28 +44,26 @@ export const getDifferent = (obj1, obj2) => {
         mark: 'delete',
       };
     }
-    if (_.has(obj1, key) && _.has(obj2, key)) {
-      if (isObjects) {
-        return {
-          key,
-          value: getDifferent(val1, val2),
-          mark: 'nested',
-        };
-      } else if (val1 !== val2) {
-        return {
-          key,
-          val1,
-          val2,
-          mark: 'change',
-        };
-      } else if (val1 === val2) {
-        return {
-          key,
-          val1,
-          mark: 'no change',
-        };
-      }
+    if (_.isPlainObject(val1) && _.isPlainObject(val2)) {
+      return {
+        key,
+        value: getDifferent(val1, val2),
+        mark: 'nested',
+      };
     }
+    if (!_.isEqual(val1, val2)) {
+      return {
+        key,
+        val1,
+        val2,
+        mark: 'change',
+      };
+    }
+    return {
+      key,
+      val1,
+      mark: 'no change',
+    };
   });
   return allKeys;
 };
