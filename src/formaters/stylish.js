@@ -2,12 +2,12 @@ import _ from 'lodash';
 
 const data = {
   added: '+ ',
-  deleted: '- ',
+  delete: '- ',
   space: '  ',
 };
 
 const getSpace = (depth, symbol) => {
-  const space = '    ';
+  const space = ' ';
   if (!symbol) {
     return space.repeat(depth);
   }
@@ -23,20 +23,20 @@ const getString = (value, level) => {
       return `${currentValue}`;
     }
     const lines = Object.entries(currentValue).map(
-      ([key, val]) =>
-        `${getSpace(depth + 1, data.space)}${key}: ${iter(val, depth + 1)}`
+      ([key, val]) => `${getSpace(depth + 1, data.space)}${key}:
+        ${iter(val, depth + 1)}`
     );
     return ['{', ...lines, `${getSpace(depth + 1)}}`].join('\n');
   };
   return iter(value, level);
 };
 
-const getStylish = (tree) => {
-  const iter = (object, depth) => {
-    const result = object.map((key) => {
-      switch (key.action) {
-        case 'deleted':
-          return `${getSpace(depth, data.deleted)}${key.key}: ${getString(
+const getStylish = (arrayObj) => {
+  const buldTree = (obj, depth) => {
+    const result = obj.map((key) => {
+      switch (key.mark) {
+        case 'delete':
+          return `${getSpace(depth, data.delete)}${key.key}: ${getString(
             key.val1,
             depth
           )}`;
@@ -45,12 +45,12 @@ const getStylish = (tree) => {
             key.val2,
             depth
           )}`;
-        case 'nested':
-          return `${getSpace(depth, data.space)}${key.key}: ${iter(
-            key.children,
+        case 'children':
+          return `${getSpace(depth, data.space)}${key.key}: ${buldTree(
+            key.value,
             depth + 1
           )}`;
-        case 'changed':
+        case 'change':
           return [
             `${getSpace(depth, data.deleted)}${key.key}: ${getString(
               key.val1,
@@ -69,6 +69,7 @@ const getStylish = (tree) => {
     });
     return ['{', ...result, `${getSpace(depth)}}`].join('\n');
   };
-  return iter(tree, 0);
+  return buldTree(arrayObj);
 };
+
 export default getStylish;

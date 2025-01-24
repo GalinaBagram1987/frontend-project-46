@@ -22,8 +22,11 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .version('0.0.1')
-  .action((filepath1, filepath2, option) => {
-    const result = genDiff(filepath1, filepath2, option.format);
+  //   .action((filepath1, filepath2, option) => {
+  //     const result = genDiff(filepath1, filepath2, option.format);
+  // console.log(result);
+  .action((filepath1, filepath2) => {
+    const result = genDiff(filepath1, filepath2);
     console.log(result);
   });
 

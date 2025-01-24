@@ -27,9 +27,11 @@ export const getExtension = (filePath) => extname(filePath);
 export const getDifferent = (obj1, obj2) => {
   const objKeys1 = Object.keys(obj1);
   const objKeys2 = Object.keys(obj2);
-  const allKeys = _.sortBy(_.uniq([...objKeys1, ...objKeys2])).map((key) => {
+  const allKeys = _.sortBy(_.union([...objKeys1, ...objKeys2]));
+  const diff = allKeys.map((key) => {
     const val1 = obj1[key];
     const val2 = obj2[key];
+
     if (!_.has(obj1, key)) {
       return {
         key,
@@ -48,7 +50,7 @@ export const getDifferent = (obj1, obj2) => {
       return {
         key,
         value: getDifferent(val1, val2),
-        mark: 'nested',
+        mark: 'children',
       };
     }
     if (!_.isEqual(val1, val2)) {
@@ -62,10 +64,10 @@ export const getDifferent = (obj1, obj2) => {
     return {
       key,
       val1,
-      mark: 'no change',
+      mark: 'noChange',
     };
   });
-  return allKeys;
+  return diff;
 };
 
 // console.log(getPath(`__fixtures__/file1.json`));

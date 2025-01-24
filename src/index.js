@@ -15,6 +15,7 @@ const genDiff = (filePath1, filePath2) => {
   const obj2 = getParseData(filePath2);
   const dataDiff = getDifferent(obj1, obj2);
   const result = getStylish(dataDiff);
+  // return dataDiff;
   return result;
 };
 
