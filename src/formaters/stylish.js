@@ -7,7 +7,7 @@ const data = {
 };
 
 const getSpace = (depth, symbol) => {
-  const space = ' ';
+  const space = '    ';
   if (!symbol) {
     return space.repeat(depth);
   }
@@ -22,10 +22,7 @@ const getString = (value, level) => {
     if (!_.isObject(currentValue)) {
       return `${currentValue}`;
     }
-    const lines = Object.entries(currentValue).map(
-      ([key, val]) => `${getSpace(depth + 1, data.space)}${key}:
-        ${iter(val, depth + 1)}`
-    );
+    const lines = Object.entries(currentValue).map(([key, val]) => `${getSpace(depth + 1, data.space)}${key}: ${iter(val, depth + 1)}`);
     return ['{', ...lines, `${getSpace(depth + 1)}}`].join('\n');
   };
   return iter(value, level);
@@ -36,40 +33,19 @@ const getStylish = (arrayObj) => {
     const result = obj.map((key) => {
       switch (key.mark) {
         case 'delete':
-          return `${getSpace(depth, data.delete)}${key.key}: ${getString(
-            key.val1,
-            depth
-          )}`;
+          return `${getSpace(depth, data.delete)}${key.key}: ${getString(key.val1, depth)}`;
         case 'added':
-          return `${getSpace(depth, data.added)}${key.key}: ${getString(
-            key.val2,
-            depth
-          )}`;
+          return `${getSpace(depth, data.added)}${key.key}: ${getString(key.val2, depth)}`;
         case 'children':
-          return `${getSpace(depth, data.space)}${key.key}: ${buldTree(
-            key.value,
-            depth + 1
-          )}`;
+          return `${getSpace(depth, data.space)}${key.key}: ${buldTree(key.value, depth + 1)}`;
         case 'change':
-          return [
-            `${getSpace(depth, data.deleted)}${key.key}: ${getString(
-              key.val1,
-              depth
-            )}\n${getSpace(depth, data.added)}${key.key}: ${getString(
-              key.val2,
-              depth
-            )}`,
-          ];
+          return [`${getSpace(depth, data.delete)}${key.key}: ${getString(key.val1, depth)}\n${getSpace(depth, data.added)}${key.key}: ${getString(key.val2, depth)}`];
         default:
-          return `${getSpace(depth, data.space)}${key.key}: ${getString(
-            key.val1,
-            depth
-          )}`;
+          return `${getSpace(depth, data.space)}${key.key}: ${getString(key.val1, depth)}`;
       }
     });
     return ['{', ...result, `${getSpace(depth)}}`].join('\n');
   };
-  return buldTree(arrayObj);
+  return buldTree(arrayObj, 0);
 };
-
 export default getStylish;

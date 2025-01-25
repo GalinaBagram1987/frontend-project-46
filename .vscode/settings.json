@@ -8,4 +8,5 @@
 		"typescriptreact"
 	],
 	"prettier.singleQuote": true,
+	"editor.wordWrap": "off",
 	}
