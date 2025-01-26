@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
 import { extname } from 'path';
-import * as yaml from 'js-yaml';
+// import * as yaml from 'js-yaml';
 import _ from 'lodash';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,8 +19,7 @@ export const getPath = (filePath) => {
   return absolutePath;
 };
 
-export const readFile = (filePath) =>
-  fs.readFileSync(getPath(filePath), 'utf-8');
+export const readFile = (filePath) => fs.readFileSync(getPath(filePath), 'utf-8');
 
 export const getExtension = (filePath) => extname(filePath);
 

@@ -9,6 +9,9 @@
 ### rec gendiff second test (step 6)
 [![asciicast](https://asciinema.org/a/Q5aARgfqtGSLroF5poHa0SHmS.svg)](https://asciinema.org/a/Q5aARgfqtGSLroF5poHa0SHmS)
 
+### rec gendiff option stylish
+[![asciicast](https://asciinema.org/a/185IOcrQaBQfPC1bREw0TEICE.svg)](https://asciinema.org/a/185IOcrQaBQfPC1bREw0TEICE)
+
 ### check.yml badges
 
 [![.github/workflows/check.yml](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml/badge.svg)](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml)

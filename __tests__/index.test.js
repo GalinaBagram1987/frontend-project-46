@@ -1,14 +1,14 @@
 // import { fileURLToPath } from 'url';
-import fs from 'fs';
+// import fs from 'fs';
 // import path from 'path';
 // import * as yaml from 'js-yaml';
 // import _ from 'lodash';
-import { genDiff } from '../src/index.js';
+import genDiff from '../src/index.js';
 // import { extname } from 'path';
 import {
   getPath,
   readFile,
-  getExtension,
+  // getExtension,
   // getDifferent,
 } from '../src/utilits.js';
 
@@ -21,15 +21,14 @@ import {
 // if (file1.lendth === 0 && file2.lendth === 0) {
 // expect(genDiff(filePath1, filePath2)).toEqual(expected);
 // }
-//});
+// });
 
-test('genDiff, if one of the files does not exist', () => {
-  const diff = (filePath1, filePath2) => {
-    if (!fs.existsSync(filePath1) || !fs.existsSync(filePath2)) {
-      throw new Error('Error, Invalid file path');
-    }
-  };
-});
+// test('genDiff, if one of the files does not exist', (filePath1, filePath2) => {
+// const diff = (filePath1, filePath2) => {
+//    if (!fs.existsSync(filePath1) || !fs.existsSync(filePath2)) {
+//      throw new Error('Error, Invalid file path');
+//    }
+//  });
 
 test('genDiff, stylishOneBase for Json', () => {
   const filePath1 = getPath('__fixtures__/file1.json');
@@ -39,8 +38,8 @@ test('genDiff, stylishOneBase for Json', () => {
 });
 
 test('genDiff, stylishOneBase for Yml', () => {
-  const filePath1 = getPath('__fixtures__/Filepath1.yml');
-  const filePath2 = getPath('__fixtures__//Filepath2.yml');
+  const filePath1 = getPath('__fixtures__/filepath1.yml');
+  const filePath2 = getPath('__fixtures__/filepath2.yml');
   const expected = readFile('__fixtures__/stylishOneBase.txt').trim();
   expect(genDiff(filePath1, filePath2)).toEqual(expected);
 });
