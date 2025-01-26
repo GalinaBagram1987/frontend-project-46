@@ -29,7 +29,7 @@ const getString = (value, level) => {
 };
 
 const getStylish = (arrayObj) => {
-  const buldTree = (obj, depth) => {
+  const buildTree = (obj, depth) => {
     const result = obj.map((key) => {
       switch (key.mark) {
         case 'delete':
@@ -37,7 +37,7 @@ const getStylish = (arrayObj) => {
         case 'added':
           return `${getSpace(depth, data.added)}${key.key}: ${getString(key.val2, depth)}`;
         case 'children':
-          return `${getSpace(depth, data.space)}${key.key}: ${buldTree(key.value, depth + 1)}`;
+          return `${getSpace(depth, data.space)}${key.key}: ${buildTree(key.value, depth + 1)}`;
         case 'change':
           return [`${getSpace(depth, data.delete)}${key.key}: ${getString(key.val1, depth)}\n${getSpace(depth, data.added)}${key.key}: ${getString(key.val2, depth)}`];
         default:
@@ -46,6 +46,6 @@ const getStylish = (arrayObj) => {
     });
     return ['{', ...result, `${getSpace(depth)}}`].join('\n');
   };
-  return buldTree(arrayObj, 0);
+  return buildTree(arrayObj, 0);
 };
 export default getStylish;

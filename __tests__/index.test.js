@@ -30,18 +30,32 @@ import {
 //    }
 //  });
 
-test('genDiff, stylishOneBase for Json', () => {
+test('genDiff, stylish for Json', () => {
   const filePath1 = getPath('__fixtures__/file1.json');
   const filePath2 = getPath('__fixtures__/file2.json');
   const expected = readFile('__fixtures__/stylishOneBase.txt').trim();
-  expect(genDiff(filePath1, filePath2)).toEqual(expected);
+  expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(expected);
 });
 
-test('genDiff, stylishOneBase for Yml', () => {
+test('genDiff, stylish for Yml', () => {
   const filePath1 = getPath('__fixtures__/filepath1.yml');
   const filePath2 = getPath('__fixtures__/filepath2.yml');
   const expected = readFile('__fixtures__/stylishOneBase.txt').trim();
-  expect(genDiff(filePath1, filePath2)).toEqual(expected);
+  expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(expected);
+});
+
+test('genDiff, plain for Json', () => {
+  const filePath1 = getPath('__fixtures__/file1.json');
+  const filePath2 = getPath('__fixtures__/file2.json');
+  const expected = readFile('__fixtures__/plainTwo.txt').trim();
+  expect(genDiff(filePath1, filePath2, 'plain')).toEqual(expected);
+});
+
+test('genDiff, plain for Yml', () => {
+  const filePath1 = getPath('__fixtures__/filepath1.yml');
+  const filePath2 = getPath('__fixtures__/filepath2.yml');
+  const expected = readFile('__fixtures__/plainTwo.txt').trim();
+  expect(genDiff(filePath1, filePath2, 'plain')).toEqual(expected);
 });
 
 // test('genDif, should return differences between two JSON files', () => {

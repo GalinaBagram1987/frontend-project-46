@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import path from 'path';
-import { extname } from 'path';
+import path, { extname } from 'path';
 // import * as yaml from 'js-yaml';
 import _ from 'lodash';
 
