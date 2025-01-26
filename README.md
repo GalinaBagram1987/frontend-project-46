@@ -12,6 +12,9 @@
 ### rec gendiff option stylish
 [![asciicast](https://asciinema.org/a/185IOcrQaBQfPC1bREw0TEICE.svg)](https://asciinema.org/a/185IOcrQaBQfPC1bREw0TEICE)
 
+### rec gendiff option plain
+[![asciicast](https://asciinema.org/a/CxlyRp84bhqnTklkAHa5buzX4.svg)](https://asciinema.org/a/CxlyRp84bhqnTklkAHa5buzX4)
+
 ### check.yml badges
 
 [![.github/workflows/check.yml](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml/badge.svg)](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml)
