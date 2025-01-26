@@ -1,14 +1,12 @@
-import _ from 'lodash';
-
 const getString = (value) => {
-  let result = '';
-  if (_.isObject(value)) {
-    result = value == null ? value : '[complex value]';
+  switch (typeof value) {
+    case 'object':
+      return value == null ? value : '[complex value]';
+    case 'string':
+      return `'${value}'`;
+    default:
+      return value;
   }
-  if (typeof value === 'string') {
-    result = `${value}`;
-  }
-  return result;
 };
 
 const data = {
@@ -23,13 +21,13 @@ const getPlain = (arrayObj) => {
       const fullKey = `${path}${key.key}`;
       switch (key.mark) {
         case 'delete':
-          return `Property ${fullKey} ${data.delete}`;
+          return `Property '${fullKey}' ${data.delete}`;
         case 'added':
-          return `Property ${fullKey} ${data.added} ${getString(key.val2)}`;
+          return `Property '${fullKey}' ${data.added} ${getString(key.val2)}`;
         case 'children':
-          return buildTree(key.value, `${fullKey}`);
+          return buildTree(key.value, `${fullKey}.`);
         case 'change':
-          return `Property ${fullKey} ${data.change} ${getString(key.val1)} to ${getString(key.val2)}`;
+          return `Property '${fullKey}' ${data.change} ${getString(key.val1)} to ${getString(key.val2)}`;
         default:
           return null;
       }
