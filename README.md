@@ -15,6 +15,9 @@
 ### rec gendiff option plain
 [![asciicast](https://asciinema.org/a/CxlyRp84bhqnTklkAHa5buzX4.svg)](https://asciinema.org/a/CxlyRp84bhqnTklkAHa5buzX4)
 
+### rec gendiff option json
+[![asciicast](https://asciinema.org/a/LfT8z3GiRltLLPoRNsf5LpReB.svg)](https://asciinema.org/a/LfT8z3GiRltLLPoRNsf5LpReB)
+
 ### check.yml badges
 
 [![.github/workflows/check.yml](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml/badge.svg)](https://github.com/GalinaBagram1987/frontend-project-46/actions/workflows/check.yml)
