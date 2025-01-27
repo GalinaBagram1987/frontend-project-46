@@ -1,14 +1,6 @@
-// import { fileURLToPath } from "url";
-// import fs from "fs";
-// import path from "path";
-// import * as yaml from "js-yaml";
-// import { extname } from "path";
-// import _ from "lodash";
-// import { getPath, readFile, getExtension, getDifferent } from './utilits.js';
 import { getDifferent } from './utilits.js';
 
 import getParseData from './parser.js';
-// import getStylish from './formaters/stylish.js';
 import selectFormat from './formaters/selectFormat.js';
 
 const genDiff = (filePath1, filePath2, format = 'stylish') => {
@@ -17,9 +9,8 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
   const dataDiff = getDifferent(obj1, obj2);
 
   const result = selectFormat(dataDiff, format);
-  // return dataDiff;
+
   return result;
 };
 
 export default genDiff;
-// console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));

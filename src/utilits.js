@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path, { extname } from 'path';
-// import * as yaml from 'js-yaml';
 import _ from 'lodash';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -67,10 +66,3 @@ export const getDifferent = (obj1, obj2) => {
   });
   return diff;
 };
-
-// console.log(getPath(`__fixtures__/file1.json`));
-// console.log(readFile("__fixtures__/file1.json"));
-// console.log(getExtension("__fixtures__/file1.json"));
-// console.log(readFile('__fixtures__/expectJson.js'));
-// console.log(readFile('__fixtures__/expectYML.js'));
-// console.log(getExtension("__fixtures__/file1.json"));

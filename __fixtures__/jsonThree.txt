@@ -1,0 +1,116 @@
+{
+    "0": {
+        "key": "common",
+        "value": {
+            "0": {
+                "key": "follow",
+                "val2": false,
+                "mark": "added"
+            },
+            "1": {
+                "key": "setting1",
+                "val1": "Value 1",
+                "mark": "noChange"
+            },
+            "2": {
+                "key": "setting2",
+                "val1": 200,
+                "mark": "delete"
+            },
+            "3": {
+                "key": "setting3",
+                "val1": true,
+                "val2": null,
+                "mark": "change"
+            },
+            "4": {
+                "key": "setting4",
+                "val2": "blah blah",
+                "mark": "added"
+            },
+            "5": {
+                "key": "setting5",
+                "val2": {
+                    "key5": "value5"
+                },
+                "mark": "added"
+            },
+            "6": {
+                "key": "setting6",
+                "value": {
+                    "0": {
+                        "key": "doge",
+                        "value": {
+                            "0": {
+                                "key": "wow",
+                                "val1": "",
+                                "val2": "so much",
+                                "mark": "change"
+                            }
+                        },
+                        "mark": "children"
+                    },
+                    "1": {
+                        "key": "key",
+                        "val1": "value",
+                        "mark": "noChange"
+                    },
+                    "2": {
+                        "key": "ops",
+                        "val2": "vops",
+                        "mark": "added"
+                    }
+                },
+                "mark": "children"
+            }
+        },
+        "mark": "children"
+    },
+    "1": {
+        "key": "group1",
+        "value": {
+            "0": {
+                "key": "baz",
+                "val1": "bas",
+                "val2": "bars",
+                "mark": "change"
+            },
+            "1": {
+                "key": "foo",
+                "val1": "bar",
+                "mark": "noChange"
+            },
+            "2": {
+                "key": "nest",
+                "val1": {
+                    "key": "value"
+                },
+                "val2": "str",
+                "mark": "change"
+            }
+        },
+        "mark": "children"
+    },
+    "2": {
+        "key": "group2",
+        "val1": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        },
+        "mark": "delete"
+    },
+    "3": {
+        "key": "group3",
+        "val2": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        },
+        "mark": "added"
+    }
+}
