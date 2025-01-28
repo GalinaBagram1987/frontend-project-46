@@ -5,10 +5,10 @@ const getJson = (arrayObj) => {
     if (!_.isObject(obj)) {
       return typeof obj === 'string' ? `${obj}` : obj;
     }
-    return Object.entries(obj).reduce((acc, [key, value]) => {
-      acc[key] = buildTree(value);
-      return acc;
-    }, {});
+    return Object.entries(obj).reduce((acc, [key, value]) => ({
+      ...acc,
+      [key]: buildTree(value),
+    }), {});
   };
   return JSON.stringify(buildTree(arrayObj), null, 4);
 };
