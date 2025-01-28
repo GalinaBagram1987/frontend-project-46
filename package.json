@@ -12,7 +12,7 @@
   },
   "license": "ISC",
   "author": "Galina Bagram",
-  "main": "./bin/gendiff.js",
+  "main": "src/index.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
