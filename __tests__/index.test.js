@@ -20,12 +20,42 @@ const path3 = getPath('__fixtures__/filepath1.yml');
 const path4 = getPath('__fixtures__/filepath2.yml');
 
 test.each([
-  { a: path1, b: path2, expected: expStylish, format: 'stylish' },
-  { a: path3, b: path4, expected: expStylish, format: 'stylish' },
-  { a: path1, b: path2, expected: expPlain, format: 'plain' },
-  { a: path3, b: path4, expected: expPlain, format: 'plain' },
-  { a: path1, b: path2, expected: expJson, format: 'json' },
-  { a: path3, b: path4, expected: expJson, format: 'json' },
+  {
+    a: path1,
+    b: path2,
+    expected: expStylish,
+    format: 'stylish',
+  },
+  {
+    a: path3,
+    b: path4,
+    expected: expStylish,
+    format: 'stylish',
+  },
+  {
+    a: path1,
+    b: path2,
+    expected: expPlain,
+    format: 'plain',
+  },
+  {
+    a: path3,
+    b: path4,
+    expected: expPlain,
+    format: 'plain',
+  },
+  {
+    a: path1,
+    b: path2,
+    expected: expJson,
+    format: 'json',
+  },
+  {
+    a: path3,
+    b: path4,
+    expected: expJson,
+    format: 'json',
+  },
 ])('.add($a, $b)', (params) => {
   const { a, b, expected, format } = params;
   expect(genDiff(a, b, format)).toEqual(expected);
