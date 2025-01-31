@@ -17,6 +17,14 @@ const getSpace = (depth, symbol) => {
   return `${space.repeat(depth)}  ${symbol}`;
 };
 
+// const getSpace = (depth) => {
+//   const space = '    ';
+//   if (depth === 0) {
+// // return '';
+//   }
+//   return `${space.repeat(depth)}    `;
+// };
+//
 const getString = (value, level) => {
   const iter = (currentValue, depth) => {
     if (!_.isObject(currentValue)) {

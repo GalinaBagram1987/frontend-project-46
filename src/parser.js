@@ -1,9 +1,6 @@
 import * as yaml from 'js-yaml';
-import { getExtension, readFile } from './utilits.js';
 
-const getParseData = (filePath) => {
-  const fileType = getExtension(filePath);
-  const fileData = readFile(filePath);
+const getParseData = (fileType, fileData) => {
   if (fileType === '.json') return JSON.parse(fileData);
   if (fileType === '.yml' || fileType === '.yaml') return yaml.load(fileData);
   return `This extension (${fileType}) is not supported by the program`;
