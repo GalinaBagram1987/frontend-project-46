@@ -11,44 +11,22 @@ test('genDiff, if one of the files does not exist', () => {
   expect(() => checkPath('path/to/nonexistent/file1', 'path/to/nonexistent/file2')).toThrow('Error, Invalid file path');
 });
 
-test('genDiff, stylish for Json', () => {
-  const filePath1 = getPath('__fixtures__/file1.json');
-  const filePath2 = getPath('__fixtures__/file2.json');
-  const expected = readFile('__fixtures__/stylishOneBase.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(expected);
-});
+const expStylish = readFile('__fixtures__/stylishOneBase.txt').trim();
+const expPlain = readFile('__fixtures__/plainTwo.txt').trim();
+const expJson = readFile('__fixtures__/jsonThree.txt').trim();
+const path1 = getPath('__fixtures__/file1.json');
+const path2 = getPath('__fixtures__/file2.json');
+const path3 = getPath('__fixtures__/filepath1.yml');
+const path4 = getPath('__fixtures__/filepath2.yml');
 
-test('genDiff, stylish for Yml', () => {
-  const filePath1 = getPath('__fixtures__/filepath1.yml');
-  const filePath2 = getPath('__fixtures__/filepath2.yml');
-  const expected = readFile('__fixtures__/stylishOneBase.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(expected);
-});
-
-test('genDiff, plain for Json', () => {
-  const filePath1 = getPath('__fixtures__/file1.json');
-  const filePath2 = getPath('__fixtures__/file2.json');
-  const expected = readFile('__fixtures__/plainTwo.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'plain')).toEqual(expected);
-});
-
-test('genDiff, plain for Yml', () => {
-  const filePath1 = getPath('__fixtures__/filepath1.yml');
-  const filePath2 = getPath('__fixtures__/filepath2.yml');
-  const expected = readFile('__fixtures__/plainTwo.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'plain')).toEqual(expected);
-});
-
-test('genDiff, json for Json', () => {
-  const filePath1 = getPath('__fixtures__/file1.json');
-  const filePath2 = getPath('__fixtures__/file2.json');
-  const expected = readFile('__fixtures__/jsonThree.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'json')).toEqual(expected);
-});
-
-test('genDiff, json for Yml', () => {
-  const filePath1 = getPath('__fixtures__/filepath1.yml');
-  const filePath2 = getPath('__fixtures__/filepath2.yml');
-  const expected = readFile('__fixtures__/jsonThree.txt').trim();
-  expect(genDiff(filePath1, filePath2, 'json')).toEqual(expected);
+test.each([
+  { a: path1, b: path2, expected: expStylish, format: 'stylish' },
+  { a: path3, b: path4, expected: expStylish, format: 'stylish' },
+  { a: path1, b: path2, expected: expPlain, format: 'plain' },
+  { a: path3, b: path4, expected: expPlain, format: 'plain' },
+  { a: path1, b: path2, expected: expJson, format: 'json' },
+  { a: path3, b: path4, expected: expJson, format: 'json' },
+])('.add($a, $b)', (params) => {
+  const { a, b, expected, format } = params;
+  expect(genDiff(a, b, format)).toEqual(expected);
 });
