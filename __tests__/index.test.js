@@ -57,6 +57,12 @@ test.each([
     format: 'json',
   },
 ])('.add($a, $b)', (params) => {
-  const { a, b, expected, format } = params;
+  // prettier-ignore
+  const {
+    a,
+    b,
+    expected,
+    format,
+  } = params;
   expect(genDiff(a, b, format)).toEqual(expected);
 });
